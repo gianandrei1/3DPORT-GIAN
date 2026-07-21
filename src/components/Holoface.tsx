@@ -2,6 +2,10 @@ import { useRef, useEffect, useMemo, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
+// Detect mobile once at module level
+const isMobileDevice = () =>
+  typeof window !== 'undefined' && window.innerWidth < 768;
+
 type HolofaceProps = {
   scale?: number | [number, number, number];
   position?: [number, number, number];
@@ -36,11 +40,15 @@ const vertexShader = `
           mix(hash(i + vec3(0,1,1)), hash(i + vec3(1,1,1)), u.x), u.y), u.z
     );
   }
+  uniform float uOctaves; // 3.0 on mobile, 5.0 on desktop
+
   // Fractal Brownian Motion — layers of noise for lava texture
   float fbm(vec3 p) {
     float v = 0.0;
     float a = 0.5;
+    // Use 3 octaves on mobile (uOctaves=3), 5 on desktop
     for (int i = 0; i < 5; i++) {
+      if (float(i) >= uOctaves) break;
       v += a * noise(p);
       p = p * 2.1 + vec3(1.7, 9.2, 5.4);
       a *= 0.5;
@@ -318,8 +326,12 @@ export default function Holoface(props: HolofaceProps) {
   const targetMousePos = useRef(new THREE.Vector3(0, 0, 1000));
   const currentMousePos = useRef(new THREE.Vector3(0, 0, 1000));
 
+  const mobile = isMobileDevice();
+
   useEffect(() => {
-    const tempGeo = new THREE.IcosahedronGeometry(1.3, 40);
+    // Mobile: 18 subdivisions (~12k vertices) vs desktop: 40 (~100k vertices)
+    const detail = mobile ? 18 : 40;
+    const tempGeo = new THREE.IcosahedronGeometry(1.3, detail);
     const numParticles = tempGeo.attributes.position.count;
     
     const randoms = new Float32Array(numParticles * 3);
@@ -331,7 +343,7 @@ export default function Holoface(props: HolofaceProps) {
     
     tempGeo.setAttribute('aRandom', new THREE.BufferAttribute(randoms, 3));
     setGeometry(tempGeo);
-  }, []);
+  }, [mobile]);
 
   const uniforms = useMemo(
     () => ({
@@ -339,11 +351,12 @@ export default function Holoface(props: HolofaceProps) {
       uMouse: { value: new THREE.Vector3(0, 0, 1000) },
       uHover: { value: 0 },
       uMode: { value: 0.0 },  // 0 = wave, 1 = lava
+      uOctaves: { value: mobile ? 3.0 : 5.0 }, // fewer octaves on mobile
       uBaseColor: { value: new THREE.Color(0.05, 0.3, 0.8) },
       uHighlightColor: { value: new THREE.Color(0.0, 1.0, 1.0) },
       uActiveColor: { value: new THREE.Color(1.0, 1.0, 1.0) },
     }),
-    []
+    [mobile]
   );
 
   const [colorIndex, setColorIndex] = useState(0);

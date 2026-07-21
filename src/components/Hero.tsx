@@ -12,10 +12,6 @@ function CameraController({ scrollProgress }: { scrollProgress: MotionValue<numb
   const get = useThree((state) => state.get);
   const targetZRef = useRef(8);
 
-  // ─── CAMERA ZOOM ANIMATION (MANUAL ADJUSTMENT HERE) ───
-  // First array [0, 0.28]: The scroll progress window (starts at 0, finishes at 28% scroll)
-  // Second array [8, -5]: The camera Z-depth (starts at 8, flies past the camera to -5)
-  // Adjust '0.28' to make it end sooner/later. Adjust '-5' to make it zoom more/less.
   const cameraZ = useTransform(scrollProgress, [0, 0.12], [8, -5]);
 
   useMotionValueEvent(cameraZ, "change", (latest) => {
@@ -23,7 +19,6 @@ function CameraController({ scrollProgress }: { scrollProgress: MotionValue<numb
   });
 
   useFrame(() => {
-    // Imperative Three.js mutation — correct R3F pattern for per-frame updates
     get().camera.position.z = targetZRef.current;
   });
 
@@ -78,6 +73,8 @@ export default function Hero() {
           <Canvas 
             camera={{ position: [0, 0, 8], fov: 45 }} 
             style={{ width: '100%', height: '100%' }}
+            dpr={isMobile ? [1, 1.5] : [1, 2]}
+            gl={{ antialias: !isMobile, powerPreference: 'high-performance' }}
             eventSource={typeof window !== 'undefined' ? document.getElementById('root')! : undefined}
             eventPrefix="client"
           >
@@ -125,27 +122,26 @@ export default function Hero() {
         <ExperienceGrid />
       </div>
 
-      {/* 
-        5. Duplicated Blur Layer (Option 3)
-        This applies the exact same `filter: blur()` effect you see on your text animations.
-        It duplicates the DOM content, blurs it heavily, and masks it so the blur is only
-        visible in the top ~200px of the viewport. Since it uses `mask-attachment: fixed`,
-        the blur field stays anchored to the header while the content scrolls through it.
+      {/* 5. Duplicated Blur Layer — desktop only (too expensive on mobile)
+        Duplicates DOM content, blurs it, and masks it to the top ~200px.
+        Skipped on mobile to avoid double-rendering cost.
       */}
-      <div 
-        className="absolute top-0 left-0 w-full h-full pointer-events-none z-40 [&_*]:!pointer-events-none"
-        style={{
-          filter: 'blur(16px)',
-          WebkitMaskImage: 'linear-gradient(to bottom, black 0px, black 80px, transparent 240px)',
-          WebkitMaskAttachment: 'fixed',
-          maskImage: 'linear-gradient(to bottom, black 0px, black 80px, transparent 240px)',
-          maskAttachment: 'fixed'
-        } as any}
-      >
-        <SecondScroll />
-        <PersonalProjects />
-        <ExperienceGrid />
-      </div>
+      {!isMobile && (
+        <div 
+          className="absolute top-0 left-0 w-full h-full pointer-events-none z-40 [&_*]:!pointer-events-none"
+          style={{
+            filter: 'blur(16px)',
+            WebkitMaskImage: 'linear-gradient(to bottom, black 0px, black 80px, transparent 240px)',
+            WebkitMaskAttachment: 'fixed',
+            maskImage: 'linear-gradient(to bottom, black 0px, black 80px, transparent 240px)',
+            maskAttachment: 'fixed'
+          } as any}
+        >
+          <SecondScroll />
+          <PersonalProjects />
+          <ExperienceGrid />
+        </div>
+      )}
     </div>
   );
 }
