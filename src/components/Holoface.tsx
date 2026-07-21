@@ -392,7 +392,7 @@ export default function Holoface(props: HolofaceProps) {
     targetMousePos.current.copy(e.point);
   };
 
-  const handlePointerDown = (e: any) => {
+  const handlePointerDown = () => {
     setColorIndex((prev) => (prev + 1) % colorSchemes.length);
   };
 
