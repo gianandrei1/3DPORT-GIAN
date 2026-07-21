@@ -97,15 +97,15 @@ export default function Hero() {
           }}
           className="flex flex-col items-center text-center pointer-events-none"
         >
-          <h1 className="group text-5xl md:text-8xl font-bold tracking-tighter leading-[0.9] mb-6 text-white hover:text-[var(--theme-color)] transition-colors duration-300 uppercase mt-12 cursor-default pointer-events-auto">
-            HELLO <span className="font-light mx-2 opacity-50 group-hover:text-[var(--theme-color)] transition-colors duration-300">&#xD7;</span> WORLD! <br />
+          <h1 className="group text-5xl md:text-8xl font-bold tracking-tighter leading-[0.9] mb-6 md:text-white text-[var(--theme-color)] hover:text-[var(--theme-color)] transition-colors duration-300 uppercase mt-12 cursor-default pointer-events-auto">
+            HELLO <span className="font-light mx-2 md:opacity-50 md:text-white text-[var(--theme-color)] group-hover:text-[var(--theme-color)] transition-colors duration-300">&#xD7;</span> WORLD! <br />
            
           </h1>
           <a
             href="https://t.me/gianandrei1"
             target="_blank"
             rel="noopener noreferrer"
-            className="border border-white/20 text-white text-xs uppercase tracking-widest font-mono px-6 py-3 hover:bg-[var(--theme-color)] hover:border-[var(--theme-color)] hover:text-black transition-all duration-300 pointer-events-auto inline-block"
+            className="border md:border-white/20 border-[var(--theme-color)] md:text-white text-[var(--theme-color)] text-xs uppercase tracking-widest font-mono px-6 py-3 md:hover:bg-[var(--theme-color)] hover:border-[var(--theme-color)] md:hover:text-black active:bg-[var(--theme-color)] active:text-black transition-all duration-300 pointer-events-auto inline-block"
           >
             Write to Telegram
           </a>
