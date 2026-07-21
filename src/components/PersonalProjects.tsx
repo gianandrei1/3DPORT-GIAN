@@ -341,10 +341,10 @@ function ProjectRow({
     <div
       className={`
         w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-20
-        flex flex-col gap-6 md:gap-0
+        flex flex-col gap-4 md:gap-0
         ${flip ? 'md:flex-row-reverse' : 'md:flex-row'}
         md:items-center
-        py-10 md:py-28
+        py-6 md:py-28
         border-t border-white/[0.06]
       `}
     >
@@ -352,7 +352,7 @@ function ProjectRow({
       <div className="w-full md:w-1/2 flex items-center justify-center">
         <RevealBlock offset={isMobile ? ['start 100%', 'start 65%'] : ['start 90%', 'start 50%']} className="w-full">
           {image ? (
-            <div className="relative w-full h-[260px] sm:h-[340px] md:h-[520px] flex items-center justify-center">
+            <div className="relative w-full h-[180px] sm:h-[260px] md:h-[520px] flex items-center justify-center">
               <img src={image} alt={title.replace('\n', ' ')} className="w-full h-full object-cover rounded-2xl shadow-[0_32px_64px_rgba(0,0,0,0.6)] border border-white/10" />
             </div>
           ) : (
@@ -362,7 +362,7 @@ function ProjectRow({
       </div>
 
       {/* ── Text side ── */}
-      <div className={`w-full md:w-1/2 flex flex-col gap-4 md:gap-6 ${flip ? 'md:pr-16' : 'md:pl-16'}`}>
+      <div className={`w-full md:w-1/2 flex flex-col gap-3 md:gap-6 ${flip ? 'md:pr-16' : 'md:pl-16'}`}>
         {/* Monospace tag */}
         <RevealBlock offset={isMobile ? ['start 100%', 'start 85%'] : ['start 95%', 'start 75%']} className="pointer-events-auto">
           <p className="text-[10px] font-mono text-white/30 uppercase tracking-[0.3em]">
@@ -371,12 +371,12 @@ function ProjectRow({
         </RevealBlock>
 
         {/* Title — letter-by-letter */}
-        <div className="pointer-events-auto">
+        <div className="pointer-events-auto -mt-1 md:mt-0">
           {titleLines.map((line, i) => (
             <ScrollRevealText
               key={i}
               text={line}
-              className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tighter leading-[0.88] text-white uppercase"
+              className="text-3xl sm:text-4xl md:text-6xl font-bold tracking-tighter leading-[0.88] text-white uppercase"
               offset={isMobile ? ['start 100%', 'start 75%'] : ['start 90%', 'start 55%']}
             />
           ))}
@@ -384,7 +384,7 @@ function ProjectRow({
 
         {/* Description — block reveal */}
         <RevealBlock offset={isMobile ? ['start 100%', 'start 80%'] : ['start 90%', 'start 65%']} className="pointer-events-auto">
-          <p className="text-sm md:text-base text-white/50 font-light leading-relaxed max-w-md">
+          <p className="text-xs md:text-base text-white/50 font-light leading-relaxed max-w-md">
             {description}
           </p>
         </RevealBlock>
