@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body {
+    @apply bg-background text-primary font-sans antialiased m-0 p-0 overflow-x-hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6, p, a, span, button, li {
+    @apply transition-colors duration-300;
+  }
+
+  @media (hover: hover) {
+    h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover, p:hover, a:hover, span:hover, button:hover, li:hover {
+      color: var(--theme-color);
+    }
+  }
+}
+
+/* Lenis CSS */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* Base custom styles */
+::selection {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
