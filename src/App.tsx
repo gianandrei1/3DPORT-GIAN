@@ -47,10 +47,10 @@ function App() {
         transition={{ duration: GLITCH_FADE_S, ease: 'easeInOut' }}
       >
           <Header />
-          <main className="w-full bg-background relative selection:bg-white/20">
+          <main className="w-full bg-background relative selection:bg-white/20 m-0 p-0">
             <Hero />
-            <Footer />
           </main>
+          <Footer />
       </motion.div>
     </>
   );
