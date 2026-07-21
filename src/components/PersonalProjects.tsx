@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import papicholosImg0 from '../assets/papicholos/PAPICHOLOS - 0.png';
 import papicholosImg1 from '../assets/papicholos/PAPICHOLOS - 1.png';
 import papicholosImg2 from '../assets/papicholos/PAPICHOLOS - 2.png';
@@ -120,7 +120,7 @@ function RevealBlock({
 
 function FloatingCardStack() {
   return (
-    <div className="relative w-full h-[420px] md:h-[520px] flex items-center justify-center select-none">
+    <div className="relative w-full h-[260px] sm:h-[340px] md:h-[520px] flex items-center justify-center select-none scale-75 sm:scale-90 md:scale-100 origin-center">
 
       {/* Card 3 — backmost, tilted */}
       <div
@@ -327,24 +327,32 @@ function ProjectRow({
   gallery,
   onViewGallery,
 }: Project & { onViewGallery?: () => void }) {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const titleLines = title.split('\n');
 
   return (
     <div
       className={`
         w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-20
-        flex flex-col gap-12
+        flex flex-col gap-6 md:gap-0
         ${flip ? 'md:flex-row-reverse' : 'md:flex-row'}
-        md:gap-0 md:items-center
-        py-20 md:py-28
+        md:items-center
+        py-10 md:py-28
         border-t border-white/[0.06]
       `}
     >
       {/* ── Visual side ── */}
       <div className="w-full md:w-1/2 flex items-center justify-center">
-        <RevealBlock offset={['start 90%', 'start 50%']} className="w-full">
+        <RevealBlock offset={isMobile ? ['start 100%', 'start 65%'] : ['start 90%', 'start 50%']} className="w-full">
           {image ? (
-            <div className="relative w-full h-[420px] md:h-[520px] flex items-center justify-center">
+            <div className="relative w-full h-[260px] sm:h-[340px] md:h-[520px] flex items-center justify-center">
               <img src={image} alt={title.replace('\n', ' ')} className="w-full h-full object-cover rounded-2xl shadow-[0_32px_64px_rgba(0,0,0,0.6)] border border-white/10" />
             </div>
           ) : (
@@ -354,9 +362,9 @@ function ProjectRow({
       </div>
 
       {/* ── Text side ── */}
-      <div className={`w-full md:w-1/2 flex flex-col gap-6 ${flip ? 'md:pr-16' : 'md:pl-16'}`}>
+      <div className={`w-full md:w-1/2 flex flex-col gap-4 md:gap-6 ${flip ? 'md:pr-16' : 'md:pl-16'}`}>
         {/* Monospace tag */}
-        <RevealBlock offset={['start 95%', 'start 75%']} className="pointer-events-auto">
+        <RevealBlock offset={isMobile ? ['start 100%', 'start 85%'] : ['start 95%', 'start 75%']} className="pointer-events-auto">
           <p className="text-[10px] font-mono text-white/30 uppercase tracking-[0.3em]">
             {tag} <span className="opacity-40 mx-2">·</span> {year}
           </p>
@@ -369,20 +377,20 @@ function ProjectRow({
               key={i}
               text={line}
               className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tighter leading-[0.88] text-white uppercase"
-              offset={['start 90%', 'start 55%']}
+              offset={isMobile ? ['start 100%', 'start 75%'] : ['start 90%', 'start 55%']}
             />
           ))}
         </div>
 
         {/* Description — block reveal */}
-        <RevealBlock offset={['start 90%', 'start 65%']} className="pointer-events-auto">
+        <RevealBlock offset={isMobile ? ['start 100%', 'start 80%'] : ['start 90%', 'start 65%']} className="pointer-events-auto">
           <p className="text-sm md:text-base text-white/50 font-light leading-relaxed max-w-md">
             {description}
           </p>
         </RevealBlock>
 
         {/* Stack tags */}
-        <RevealBlock offset={['start 90%', 'start 70%']} className="pointer-events-auto">
+        <RevealBlock offset={isMobile ? ['start 100%', 'start 85%'] : ['start 90%', 'start 70%']} className="pointer-events-auto">
           <div className="flex flex-wrap gap-2">
             {stack.map((s) => (
               <span
@@ -396,7 +404,7 @@ function ProjectRow({
         </RevealBlock>
 
         {/* CTA button with corner framing */}
-        <RevealBlock offset={['start 92%', 'start 72%']} className="pointer-events-auto w-fit">
+        <RevealBlock offset={isMobile ? ['start 100%', 'start 85%'] : ['start 92%', 'start 72%']} className="pointer-events-auto w-fit">
           {gallery && onViewGallery ? (
             <button
               onClick={onViewGallery}
