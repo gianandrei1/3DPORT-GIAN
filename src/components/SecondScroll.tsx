@@ -166,7 +166,7 @@ function TechIconStaggered({
       style={{ opacity, filter, y }} 
       className="flex flex-col items-center justify-center relative group"
     >
-      <Icon className="w-[18px] h-[18px] sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-9 lg:h-9 text-[#FFFFFF] transition-all duration-300 group-hover:scale-110 group-hover:text-[var(--theme-color)]" />
+      <Icon className="w-[18px] h-[18px] sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-9 lg:h-9 text-[#FFFFFF] transition-all duration-300 group-hover:scale-110 group-hover:text-white" />
     </motion.div>
   );
 }
@@ -214,7 +214,7 @@ export default function SecondScroll() {
           <div className="max-w-5xl w-full text-center px-4 sm:px-6 pointer-events-auto">
             <ScrollRevealText
               text="I specialize in developing modern web applications, user interfaces, and digital experiences that are both visually engaging and highly functional."
-              className="text-xl sm:text-2xl md:text-3xl font-bold uppercase leading-tight tracking-tight text-white/90 hover:text-[var(--theme-color)] transition-colors duration-300 cursor-default"
+              className="text-xl sm:text-2xl md:text-3xl font-bold uppercase leading-tight tracking-tight text-white/90 hover:text-white transition-colors duration-300 cursor-default"
               scrollYProgress={combinedScrollYProgress}
             />
           </div>
@@ -233,7 +233,7 @@ export default function SecondScroll() {
               href={cvPdf}
               target="_blank"
               rel="noopener noreferrer"
-              className="border border-white/20 text-white text-[10px] sm:text-xs uppercase tracking-widest font-mono px-6 py-4 hover:bg-[var(--theme-color)] hover:border-[var(--theme-color)] hover:text-black transition-all duration-300 pointer-events-auto w-full sm:w-auto text-center"
+              className="border border-white/20 text-white text-[10px] sm:text-xs uppercase tracking-widest font-mono px-6 py-4 hover:bg-white hover:border-white hover:text-black transition-all duration-300 pointer-events-auto w-full sm:w-auto text-center"
               offset={['start 100%', 'start 80%']} // Synchronized: Triggers exact same time as paragraph
             >
               View CV

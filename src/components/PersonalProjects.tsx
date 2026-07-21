@@ -408,7 +408,7 @@ function ProjectRow({
           {gallery && onViewGallery ? (
             <button
               onClick={onViewGallery}
-              className="group relative inline-flex items-center gap-3 pointer-events-auto w-fit mt-2 px-5 py-3 border border-white/20 rounded-sm bg-transparent hover:bg-[var(--theme-color)] hover:border-[var(--theme-color)] transition-all duration-300"
+              className="group relative inline-flex items-center gap-3 pointer-events-auto w-fit mt-2 px-5 py-3 border border-white/20 rounded-sm bg-transparent hover:bg-white hover:border-white hover:text-black transition-all duration-300"
             >
               <span className="text-[11px] font-mono text-white/60 uppercase tracking-[0.3em] transition-colors duration-300 group-hover:text-black">
                 View Gallery
@@ -420,7 +420,7 @@ function ProjectRow({
           ) : (
             <a
               href={href}
-              className="group relative inline-flex items-center gap-3 pointer-events-auto w-fit mt-2 px-5 py-3 border border-white/20 rounded-sm bg-transparent hover:bg-[var(--theme-color)] hover:border-[var(--theme-color)] transition-all duration-300"
+              className="group relative inline-flex items-center gap-3 pointer-events-auto w-fit mt-2 px-5 py-3 border border-white/20 rounded-sm bg-transparent hover:bg-white hover:border-white hover:text-black transition-all duration-300"
             >
               <span className="text-[11px] font-mono text-white/60 uppercase tracking-[0.3em] transition-colors duration-300 group-hover:text-black">
                 View Gallery

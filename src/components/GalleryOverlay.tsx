@@ -223,7 +223,7 @@ export default function GalleryOverlay({ images, onClose }: GalleryOverlayProps)
 
           {/* Utility Bar */}
           <div className="flex gap-2 bg-black/40 p-1.5 rounded-full border border-white/10 backdrop-blur-md">
-            <button onClick={toggleZoom} className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 text-white/70 hover:text-[var(--theme-color)] transition-colors" title={zoomLevel > 1 ? "Zoom Out" : "Zoom In"}>
+            <button onClick={toggleZoom} className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 text-white/70 hover:text-white transition-colors" title={zoomLevel > 1 ? "Zoom Out" : "Zoom In"}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                 <circle cx="11" cy="11" r="8" />
                 <path d="M21 21l-4.35-4.35" />
@@ -231,7 +231,7 @@ export default function GalleryOverlay({ images, onClose }: GalleryOverlayProps)
                 <path d="M8 11h6" />
               </svg>
             </button>
-            <button onClick={toggleFullscreen} className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 text-white/70 hover:text-[var(--theme-color)] transition-colors" title="Fullscreen">
+            <button onClick={toggleFullscreen} className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 text-white/70 hover:text-white transition-colors" title="Fullscreen">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                 {isFullscreen ? (
                   <path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3" />
@@ -241,7 +241,7 @@ export default function GalleryOverlay({ images, onClose }: GalleryOverlayProps)
               </svg>
             </button>
             <div className="w-px h-6 bg-white/10 self-center mx-1" />
-            <button onClick={onClose} className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 text-white/70 hover:text-[var(--theme-color)] transition-colors" title="Close">
+            <button onClick={onClose} className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 text-white/70 hover:text-white transition-colors" title="Close">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                 <path d="M18 6L6 18M6 6l12 12" />
               </svg>
@@ -302,7 +302,7 @@ export default function GalleryOverlay({ images, onClose }: GalleryOverlayProps)
         {/* Side Navigation Arrows */}
         <button 
           onClick={prevImage}
-          className="absolute left-6 md:left-10 top-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-black/40 border border-white/10 text-white/50 hover:text-[var(--theme-color)] hover:bg-white/10 backdrop-blur-md flex items-center justify-center transition-all duration-300 z-50 group"
+          className="absolute left-6 md:left-10 top-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-black/40 border border-white/10 text-white/50 hover:text-white hover:bg-white/10 backdrop-blur-md flex items-center justify-center transition-all duration-300 z-50 group"
         >
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className="group-hover:-translate-x-1 transition-transform">
             <path d="M15 18l-6-6 6-6" />
@@ -311,7 +311,7 @@ export default function GalleryOverlay({ images, onClose }: GalleryOverlayProps)
 
         <button 
           onClick={nextImage}
-          className="absolute right-6 md:right-10 top-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-black/40 border border-white/10 text-white/50 hover:text-[var(--theme-color)] hover:bg-white/10 backdrop-blur-md flex items-center justify-center transition-all duration-300 z-50 group"
+          className="absolute right-6 md:right-10 top-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-black/40 border border-white/10 text-white/50 hover:text-white hover:bg-white/10 backdrop-blur-md flex items-center justify-center transition-all duration-300 z-50 group"
         >
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className="group-hover:translate-x-1 transition-transform">
             <path d="M9 18l6-6-6-6" />

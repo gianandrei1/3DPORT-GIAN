@@ -64,7 +64,7 @@ export default function Footer() {
                   skewX: -5,
                 }}
                 transition={{ duration: 0.4, ease: 'easeInOut', times: [0, 0.4, 0.7, 1] }}
-                className="select-none leading-none font-black uppercase text-center whitespace-nowrap text-white hover:text-[var(--theme-color)] transition-colors duration-300"
+                className="select-none leading-none font-black uppercase text-center whitespace-nowrap text-white transition-colors duration-300"
                 style={{
                   fontFamily: isLatin ? "'Inter', 'Arial Black', sans-serif" : "'Noto Sans Tagalog', system-ui, sans-serif",
                   fontWeight: 900,

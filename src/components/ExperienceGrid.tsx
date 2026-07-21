@@ -81,7 +81,7 @@ export default function ExperienceGrid() {
                     href={item.href}
                     target={item.href.startsWith('http') ? '_blank' : undefined}
                     rel="noopener noreferrer"
-                    className="text-base text-white/80 hover:text-[var(--theme-color)] transition-colors pr-8 block pointer-events-auto"
+                    className="text-base text-white/80 hover:text-white transition-colors pr-8 block pointer-events-auto"
                   >
                     {item.value}
                   </a>
