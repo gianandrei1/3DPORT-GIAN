@@ -16,7 +16,7 @@ export default function Header() {
   const lblTime = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    let frame: number;
+    let frame: number = 0;
     let scrollTimeout: ReturnType<typeof setTimeout>;
     let clockInterval: ReturnType<typeof setInterval>;
 
